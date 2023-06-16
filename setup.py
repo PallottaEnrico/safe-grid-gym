@@ -49,13 +49,9 @@ setuptools.setup(
     ),
     install_requires=[
         "gym>=0.12",
-        "ai-safety-gridworlds @ https://github.com/timorl/ai-safety-gridworlds/tarball/master#egg=ai-safety-gridworlds-1.5",
         "numpy",
         "pillow",
         "matplotlib",
-    ],
-    dependency_links=[
-        "https://github.com/timorl/ai-safety-gridworlds/tarball/master#egg=ai-safety-gridworlds-1.5"
     ],
     packages=setuptools.find_packages(),
     zip_safe=True,
