@@ -7,21 +7,23 @@ from nn_builder.pytorch.NN import NN
 
 device = "cpu"
 
-world_shape = (8,10)
+world_shape = (8, 10)
 
 hyperparameters = {
-            "input_dim" : world_shape[0]*world_shape[1],
-            "output_dim" : 4,
-            "linear_hidden_units": [64, 64],
-            "initialiser": "Xavier"
+    "input_dim": world_shape[0] * world_shape[1],
+    "output_dim": 4,
+    "linear_hidden_units": [64, 64],
+    "initialiser": "Xavier"
 }
 
-actor_network = NN(input_dim= hyperparameters['input_dim'],
+actor_network = NN(input_dim=hyperparameters['input_dim'],
                    layers_info=hyperparameters["linear_hidden_units"] + [hyperparameters["output_dim"]],
                    initialiser=hyperparameters["initialiser"],
                    random_seed=42).to(device)
 
-actor_network.load_state_dict(torch.load('../Deep-Reinforcement-Learning-Algorithms-with-PyTorch/Models/SAC_local_network.pt'))
+model_path = "../Models/SAC_safe_local_network.pt"
+
+actor_network.load_state_dict(torch.load(model_path))
 actor_network.eval()
 
 # a forward pass is required to make the export work
