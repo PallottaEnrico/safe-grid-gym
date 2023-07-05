@@ -59,6 +59,7 @@ for i in range(100):
     action = torch.argmax(action_probabilities, dim=-1)
     action = action.detach().cpu().numpy()
     new_state, reward, done, info = env.step(action[0])
+    # env.render(mode="human")
     frame = env.render(mode="rgb_array")
     frames.append(np.transpose(frame, (1, 2, 0)))
     if np.array_equal(state.numpy().reshape((1,world_shape[0],world_shape[1])),new_state):
@@ -67,4 +68,4 @@ for i in range(100):
         state = new_state
 
 env.close()
-save_frames_as_gif(frames)
+save_frames_as_gif(frames, filename=sys.argv[2])
