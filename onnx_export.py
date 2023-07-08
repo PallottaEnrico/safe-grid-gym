@@ -1,4 +1,5 @@
 import os
+import sys
 
 from omlt.io import write_onnx_model_with_bounds
 import torch
@@ -21,9 +22,9 @@ actor_network = NN(input_dim=hyperparameters['input_dim'],
                    initialiser=hyperparameters["initialiser"],
                    random_seed=42).to(device)
 
-model_path = "../Models/SAC_safe_local_network.pt"
+model_name = sys.argv[1]
 
-actor_network.load_state_dict(torch.load(model_path))
+actor_network.load_state_dict(torch.load('../Models/' + model_name))
 actor_network.eval()
 
 # a forward pass is required to make the export work
@@ -32,7 +33,7 @@ actor_network(dummy_input)
 
 input_bounds = {(0, i): (0, 5) for i in range(hyperparameters["input_dim"])}
 os.makedirs("../onnx_models", exist_ok=True)
-file_path = "../onnx_models/SAC_Discrete_actor_network.onnx"
+file_path = "../onnx_models/" + os.path.basename(model_name).replace(".pt", ".onnx")
 
 # model input used for exporting
 torch.onnx.export(
