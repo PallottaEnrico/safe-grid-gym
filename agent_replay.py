@@ -22,12 +22,12 @@ def save_frames_as_gif(frames, path='../images/', filename='gym_animation.gif'):
 
 device = "cpu"
 
-world_shape = (8,10)
+world_shape = (12,12)
 
 hyperparameters = {
             "input_dim" : world_shape[0]*world_shape[1],
             "output_dim" : 4,
-            "linear_hidden_units": [64, 64],
+            "linear_hidden_units": [128, 128, 64],
             "initialiser": "Xavier"
 }
 
