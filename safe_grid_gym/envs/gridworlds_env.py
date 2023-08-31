@@ -61,7 +61,7 @@ class GridworldEnv(gym.Env):
         self.action_space = GridworldsActionSpace(self._env)
         self.observation_space = GridworldsObservationSpace(self._env, use_transitions)
         self.max_episode_steps = 60
-        self.reward_threshold = 0
+        self.reward_threshold = 10
 
     def close(self):
         if self._viewer is not None:
