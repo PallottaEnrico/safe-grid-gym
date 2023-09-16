@@ -45,7 +45,7 @@ state = env.reset()
 
 frames = []
 # runs 100 steps, reset the environment if the agents win or get stuck on the interruption.
-for i in range(100):
+for i in range(200):
     state = torch.FloatTensor([state]).to(device)
     if len(state.shape) == 1: state = state.unsqueeze(0)
     if len(state.shape) == 4:
